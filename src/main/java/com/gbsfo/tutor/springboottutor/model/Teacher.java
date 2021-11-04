@@ -1,5 +1,7 @@
 package com.gbsfo.tutor.springboottutor.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +20,7 @@ public class Teacher extends Person {
         joinColumns = { @JoinColumn(name = "teacher_id") }, 
         inverseJoinColumns = { @JoinColumn(name = "group_id") }
     )
+    @JsonIgnore
     private Set<Group> groups = new HashSet<>();
     
     @Column(name = "position", nullable = false)

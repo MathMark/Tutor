@@ -1,5 +1,6 @@
 package com.gbsfo.tutor.springboottutor.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -22,9 +23,11 @@ public class Group {
     private LocalDate finishDate;
     
     @ManyToMany(mappedBy = "groups")
+    @JsonIgnore
     private Set<Teacher> teachersList;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
+    @JsonIgnore
     private Set<Student> studentsList;
     
     public void removeTeacher(Teacher teacher) {

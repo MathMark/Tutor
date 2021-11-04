@@ -2,13 +2,13 @@ package com.gbsfo.tutor.springboottutor.controller;
 
 import com.gbsfo.tutor.springboottutor.dto.TeacherDTO;
 import com.gbsfo.tutor.springboottutor.model.ResponseObject;
-import com.gbsfo.tutor.springboottutor.projection.TeachersGroupView;
+import com.gbsfo.tutor.springboottutor.model.Teacher;
 import com.gbsfo.tutor.springboottutor.service.TeacherService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/teachers")
@@ -43,7 +43,8 @@ public class TeacherController {
     }
     
     @GetMapping("/group/{id}")
-    public ResponseEntity<List<TeachersGroupView>> getAllTeachersOfGroup(@PathVariable Long id) {
-        return null;
+    public ResponseEntity<Set<Teacher>> getAllTeachersFromGroup(@PathVariable Long id) {
+        Set<Teacher> teachers = teacherService.getTeachersFromGroup(id);
+        return ResponseEntity.ok().body(teachers);
     }
 }

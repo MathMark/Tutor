@@ -9,10 +9,7 @@ import com.gbsfo.tutor.springboottutor.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -73,6 +70,11 @@ public class GroupService implements Mapper<Group, GroupDTO> {
 		Group group = groupRepository.getById(id);
 		return mapToDto(group);
     }
+    
+    public Set<Group> getGroupsForTeacher(Long id) {
+    	Teacher teacher = teacherRepository.getById(id);
+    	return teacher.getGroups();
+	}
     
     @Override
     public GroupDTO mapToDto(Group group) {
